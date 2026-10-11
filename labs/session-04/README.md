@@ -13,7 +13,7 @@ docker compose up -d
 Run the preparation step even if you ran it for session 3: this session needs one
 more file. It downloads nothing and takes about a minute.
 
-Then open **<http://localhost:8888/lab?token=labs>** and click into
+Then open **[http://localhost:8888/lab?token=labs](http://localhost:8888/lab?token=labs)** and click into
 `session-04/lab.ipynb`.
 
 ## If you break the database
