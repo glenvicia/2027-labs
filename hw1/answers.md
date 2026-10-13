@@ -1,4 +1,3 @@
-
 ## Part 2 — Five claims about the data (25%)
 
 Claim 1: Every `movieId` appearing in `ratings.csv` also appears in `movies.csv`.
@@ -19,7 +18,7 @@ Output:
 num_orphan_rating
 0
 ```
-```
+
 
 
 Claim 2: No two films share exactly the same title.
@@ -27,18 +26,18 @@ Claim 2: No two films share exactly the same title.
 Answer: False. There are 9,742 movies (counted by n_movie_id), but only 9,737 unique titles (counted by n_distinct_title), which means some films have the same title.
 
 ```SQL
-```sql
 SELECT COUNT(DISTINCT title) AS n_distinct_titles,
        COUNT(*)              AS n_movie_id
 FROM movie;
 ```
 
 Output:
+
 ```
 n_distinct_title	n_movie_id
 9737				9742
 ```
-```
+
 
 
 
@@ -48,7 +47,6 @@ Answer: False. After taking `movie` and doing a left join with `rating`, there a
 
 
 ```SQL
-```sql
 SELECT m.movie_id, m.title
 FROM movie m
 LEFT JOIN rating r ON r.movie_id = m.movie_id
@@ -56,6 +54,7 @@ WHERE r.movie_id IS NULL;
 ```
 
 Output:
+
 ```
 movie_id	title
 1076	Innocents, The (1961)
@@ -77,7 +76,7 @@ movie_id	title
 8765	This Gun for Hire (1942)
 85565	Chalet Girl (2011)
 ```
-```
+
 
 
 Claim 4: Every film has at least one genre.
@@ -86,7 +85,6 @@ Answer: False. After taking `movie` and doing a left join with `movie_genre`, th
 
 
 ```SQL
-```sql
 SELECT m.movie_id, m.title
 FROM movie m
 LEFT JOIN movie_genre mg ON mg.movie_id = m.movie_id
@@ -94,6 +92,7 @@ WHERE mg.movie_id IS NULL;
 ```
 
 Output:
+
 ```
 movie_id	title
 114335	La cravate (1957)
@@ -131,7 +130,6 @@ movie_id	title
 181719	Serving in Silence: The Margarethe Cammermeyer Story (1995)
 182727	A Christmas Story Live! (2017)
 ```
-```
 
 
 Claim 5: Every rating value is a whole number between 1 and 5.
@@ -140,17 +138,16 @@ Answer: False. There are 30,398 ratings that do not fulfill the criteria of bein
 
 
 ```SQL
-```sql
 SELECT COUNT(*) as num_non_whole_1_5 --testing for whole numbers and out of range
 FROM rating r
 WHERE r.rating%1 <> 0 OR r.rating<1 OR r.rating >5;
 ```
 
 Output:
+
 ```
 num_non_whole_1_5
 30398
-```
 ```
 
 ## Part 3 — Four queries (25%)
@@ -158,7 +155,6 @@ num_non_whole_1_5
 Query 1: The number of records in each table in your database.
 
 ```SQL
-```sql
 SELECT (SELECT COUNT(*) FROM movie)       AS movie,
        (SELECT COUNT(*) FROM genre)       AS genre,
        (SELECT COUNT(*) FROM movie_genre) AS movie_genre,
@@ -167,17 +163,16 @@ SELECT (SELECT COUNT(*) FROM movie)       AS movie,
 ```
 
 Output:
+
 ```
 movie	genre	movie_genre	app_user	rating
 9742	19		22050		610			100836
 
 ```
-```
 
 Query 2: The 20 films with the highest average rating, counting only films with at least 1,000 ratings (or 100 if you are using the small dataset). Return the title, the average rating and the number of ratings, ordered by average rating descending.
 
 ```SQL
-```sql
   
 SELECT m.title,
 		COUNT(*) as num_ratings, 
@@ -191,6 +186,7 @@ LIMIT 20;
 ```
 
 Output:
+
 ```
 title																				num_ratings		avg_rating
 Shawshank Redemption, The (1994)													317				4.43
@@ -215,7 +211,7 @@ Pulp Fiction (1994)																	307				4.2
 Matrix, The (1999)																	278				4.19
 
 ```
-```
+
 
 Query 3: The most frequent genres, with the number of films in each, ordered by frequency decreasing.
 
@@ -225,4 +221,5 @@ Query 3: The most frequent genres, with the number of films in each, ordered by 
 Query 4: The average rating per genre, with the number of ratings each average is based on, ordered by average descending.
 
 ```SQL
+
 ```
