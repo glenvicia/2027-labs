@@ -13,7 +13,7 @@ docker compose up -d
 The second line writes the trips to Parquet, in a few seconds, into
 `data/nyc-taxi-parquet/`. It is safe to re-run.
 
-Then open **<http://localhost:8888/lab?token=labs>** and click into
+Then open **[http://localhost:8888/lab?token=labs](http://localhost:8888/lab?token=labs)** and click into
 `session-05/lab.ipynb`. If last week's tables are gone, its first cell reloads
 PostgreSQL.
 

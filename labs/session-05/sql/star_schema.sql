@@ -1,7 +1,7 @@
 -- The star: one fact table, two dimensions, each one join away.
 --
 -- fact_trips
--- Grain:
+-- Grain: One row per taxi trip
 --
 -- State the grain on the line above before writing anything else in this file.
 -- The notebook will not build the schema until it is there.
