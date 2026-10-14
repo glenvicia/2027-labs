@@ -17,12 +17,12 @@ CREATE TABLE stage_ratings (
 \copy stage_movies FROM '/tmp/movies.csv' CSV HEADER
 \copy stage_ratings FROM '/tmp/ratings.csv' CSV HEADER
 
---#1. movie: copy directly
+--#1. movie
 INSERT INTO movie (movie_id, title)
 SELECT movie_id, title
 FROM stage_movies;
 
--- #2. genre: split each pipe-separated cell, keep each distinct label once
+-- #2. genre: split each pipe-separated cell and keep each distinct label
 INSERT INTO genre (name)
 SELECT DISTINCT unnest(string_to_array(genres, '|'))
 FROM stage_movies
