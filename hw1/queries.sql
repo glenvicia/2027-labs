@@ -46,8 +46,8 @@ SELECT (SELECT COUNT(*) FROM movie)       AS movie,
 -- Query 2: The 20 films with the highest average rating, counting only films with at least 1,000 ratings (or 100 if you are using the small dataset). 
 -- Return the title, the average rating and the number of ratings, ordered by average rating descending.
 SELECT m.title,
-		COUNT(*) as num_ratings, 
-		ROUND(AVG(r.rating),2) AS avg_rating
+		ROUND(AVG(r.rating),2) AS avg_rating,
+		COUNT(*) as num_ratings
 FROM rating r
 JOIN movie m ON m.movie_id = r.movie_id
 GROUP BY m.movie_id
@@ -68,4 +68,4 @@ FROM movie_genre mg
 JOIN genre g ON mg.genre_id = g.genre_id
 JOIN rating r ON mg.movie_id = r.movie_id
 GROUP BY g.genre_id
-ORDER BY avg_rating DESC, g.name;
+ORDER BY AVG(r.rating) DESC, g.name;

@@ -74,7 +74,7 @@ Output:
 | 147250   | The Adventures of Sherlock Holmes and Doctor Watson                                 |
 | 149330   | A Cosmic Christmas (1977)                                                           |
 | 152037   | Grease Live (2016)                                                                  |
-| 155589   | Noin 7 veljestÃ¤ (1968)                                                           |
+| 155589   | Noin 7 veljestä (1968)                                                             |
 | 156605   | Paterson                                                                            |
 | 159161   | Ali Wong: Baby Cobra (2016)                                                         |
 | 159779   | A Midsummer Night's Dream (2016)                                                    |
@@ -85,7 +85,7 @@ Output:
 | 169034   | Lemonade (2016)                                                                     |
 | 171495   | Cosmos                                                                              |
 | 171631   | Maria Bamford: Old Baby                                                             |
-| 171749   | Death Note: Desu nÃ´to (2006â€“2007)                                           |
+| 171749   | Death Note: Desu nôto (2006–2007)                                                 |
 | 171891   | Generation Iron 2                                                                   |
 | 172497   | T2 3-D: Battle Across Time (1996)                                                   |
 | 172591   | The Godfather Trilogy: 1972-1990 (1992)                                             |
@@ -98,7 +98,7 @@ Output:
 
 ### Claim 5: Every rating value is a whole number between 1 and 5.
 
-Answer: False. A distribution of the ratins show that there are plenty of ratings with a half star, including 1,370 ratings below 1.
+Answer: False. A distribution of the ratings show that there are plenty of ratings with a half star, including 1,370 ratings below 1.
 
 Output:
 
@@ -137,28 +137,28 @@ Output:
 
 Output:
 
-| title                                                                           | num_ratings | avg_rating |
-| ------------------------------------------------------------------------------- | ----------- | ---------- |
-| Shawshank Redemption, The (1994)                                                | 317         | 4.43       |
-| Godfather, The (1972)                                                           | 192         | 4.29       |
-| Fight Club (1999)                                                               | 218         | 4.27       |
-| Godfather: Part II, The (1974)                                                  | 129         | 4.26       |
-| Departed, The (2006)                                                            | 107         | 4.25       |
-| Goodfellas (1990)                                                               | 126         | 4.25       |
-| Casablanca (1942)                                                               | 100         | 4.24       |
-| Dark Knight, The (2008)                                                         | 149         | 4.24       |
-| Usual Suspects, The (1995)                                                      | 204         | 4.24       |
-| Princess Bride, The (1987)                                                      | 142         | 4.23       |
-| Star Wars: Episode IV - A New Hope (1977)                                       | 251         | 4.23       |
-| Schindler's List (1993)                                                         | 220         | 4.23       |
-| Apocalypse Now (1979)                                                           | 107         | 4.22       |
-| American History X (1998)                                                       | 129         | 4.22       |
-| Star Wars: Episode V - The Empire Strikes Back (1980)                           | 211         | 4.22       |
-| Raiders of the Lost Ark (Indiana Jones and the Raiders of the Lost Ark) (1981) | 200         | 4.21       |
-| One Flew Over the Cuckoo's Nest (1975)                                          | 133         | 4.2        |
-| Reservoir Dogs (1992)                                                           | 131         | 4.2        |
-| Pulp Fiction (1994)                                                             | 307         | 4.2        |
-| Matrix, The (1999)                                                              | 278         | 4.19       |
+| title                                                                           | avg_rating | num_ratings |
+| ------------------------------------------------------------------------------- | ---------- | ----------- |
+| Shawshank Redemption, The (1994)                                                | 4.43       | 317         |
+| Godfather, The (1972)                                                           | 4.29       | 192         |
+| Fight Club (1999)                                                               | 4.27       | 218         |
+| Godfather: Part II, The (1974)                                                  | 4.26       | 129         |
+| Departed, The (2006)                                                            | 4.25       | 107         |
+| Goodfellas (1990)                                                               | 4.25       | 126         |
+| Casablanca (1942)                                                               | 4.24       | 100         |
+| Dark Knight, The (2008)                                                         | 4.24       | 149         |
+| Usual Suspects, The (1995)                                                      | 4.24       | 204         |
+| Princess Bride, The (1987)                                                      | 4.23       | 142         |
+| Star Wars: Episode IV - A New Hope (1977)                                       | 4.23       | 251         |
+| Schindler's List (1993)                                                         | 4.23       | 220         |
+| Apocalypse Now (1979)                                                           | 4.22       | 107         |
+| American History X (1998)                                                       | 4.22       | 129         |
+| Star Wars: Episode V - The Empire Strikes Back (1980)                           | 4.22       | 211         |
+| Raiders of the Lost Ark (Indiana Jones and the Raiders of the Lost Ark) (1981) | 4.21       | 200         |
+| One Flew Over the Cuckoo's Nest (1975)                                          | 4.2        | 133         |
+| Reservoir Dogs (1992)                                                           | 4.2        | 131         |
+| Pulp Fiction (1994)                                                             | 4.2        | 307         |
+| Matrix, The (1999)                                                              | 4.19       | 278         |
 
 ### Query 3: The most frequent genres, with the number of films in each, ordered by frequency decreasing.
 
@@ -195,10 +195,10 @@ Output:
 | Film-Noir   | 870         | 3.92       |
 | War         | 4859        | 3.81       |
 | Documentary | 1219        | 3.8        |
-| Drama       | 41928       | 3.66       |
 | Crime       | 16681       | 3.66       |
-| Animation   | 6988        | 3.63       |
+| Drama       | 41928       | 3.66       |
 | Mystery     | 7674        | 3.63       |
+| Animation   | 6988        | 3.63       |
 | IMAX        | 4145        | 3.62       |
 | Western     | 1930        | 3.58       |
 | Musical     | 4138        | 3.56       |
@@ -216,8 +216,8 @@ Output:
 
 **Why these tables**
 
-* `movie`: one row per film, where the primary key is `movie_id`. The title cannot be a key because shows titles repeat (as verified in Claim 2).
-* `genre` and `movie_genre`: the CSV packs genres into one pipe-separated cell (e.g.,`Comedy|Drama|Action`), which breaks first normal form. Genres are a many-to-many relationship, so `genre` acts as a lookup table and while `movie_genre` functions  as a junction table. This allows Queries 3 and 4 to use plain joins.
+* `movie`: one row per film, where the primary key is `movie_id`. The title cannot be a key because show titles repeat (as verified in Claim 2).
+* `genre` and `movie_genre`: the CSV packs genres into one pipe-separated cell (e.g.,`Comedy|Drama|Action`), which breaks first normal form. Genres are a many-to-many relationship, so `genre` acts as a lookup table, while `movie_genre` functions  as a junction table. This allows Queries 3 and 4 to use plain joins.
 * `rating`: one row per (user, film) pair, with `(user_id, movie_id)` as the composite primary key. This also enforces that a user rates a film only once.
 * `app_user`: the data has only a `userId` and no other user attributes.
 
@@ -231,5 +231,5 @@ Output:
 **Explanations the code needs**
 
 * Tables are dropped in reverse dependency order, so `schema.sql` can be re-run.
-* `\copy` paths assume the CSVs are in `/tmp`. Adjust or document this.
+* `\copy` paths assume the CSVs are in `/tmp`.
 * `SELECT DISTINCT` in the `movie_genre` insert guards against duplicate genre labels within a cell.

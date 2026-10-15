@@ -2,7 +2,9 @@
 
 ## Dataset
 
-This assignment uses GroupLens' smaller MovieLens dataset, [ml-latest-small](https://files.grouplens.org/datasets/movielens/ml-latest-small.zip). I completed this assignment in the 2027-labs repository.
+This assignment uses GroupLens' smaller MovieLens dataset, [ml-latest-small](https://files.grouplens.org/datasets/movielens/ml-latest-small.zip).  
+
+I completed this assignment in the 2027-labs repository, utilising the`postgres` service with `labs`/`labs` credentials and a `pgadmin` service.
 
 Since the CSVs are not stored in this repository, please download and extract them locally from the repository root using PowerShell:
 
