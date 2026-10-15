@@ -34,7 +34,7 @@ WHERE r.rating%1 <> 0 OR r.rating<1 OR r.rating >5;
 ------ Part 3 ------
 --------------------
 
--- Query 1: The number of records in each table in your database.'
+-- Query 1: The number of records in each table in your database.
 SELECT (SELECT COUNT(*) FROM movie)       AS movie,
        (SELECT COUNT(*) FROM genre)       AS genre,
        (SELECT COUNT(*) FROM movie_genre) AS movie_genre,
@@ -50,20 +50,29 @@ FROM rating r
 JOIN movie m ON m.movie_id = r.movie_id
 GROUP BY m.movie_id
 HAVING COUNT(*) >= 100
-ORDER BY AVG(r.rating) DESC
+ORDER BY AVG(r.rating) DESC,  COUNT(*) DESC, m.title
 LIMIT 20;
 
 -- Query 3: The most frequent genres, with the number of films in each, ordered by frequency decreasing.
 SELECT g.name, COUNT(*) AS num_movies
 FROM movie_genre mg
-LEFT JOIN genre g ON mg.genre_id = g.genre_id
+JOIN genre g ON mg.genre_id = g.genre_id
 GROUP BY g.genre_id
-ORDER BY num_movies DESC;
+ORDER BY num_movies DESC, g.name;
 
 -- Query 4: The average rating per genre, with the number of ratings each average is based on, ordered by average descending.
-SELECT g.name, COUNT(*) AS num_ratings, AVG(r.rating) as avg_rating
+SELECT g.name, COUNT(*) AS num_ratings, ROUND(AVG(r.rating),2) as avg_rating
 FROM movie_genre mg
 JOIN genre g ON mg.genre_id = g.genre_id
-LEFT JOIN rating r ON mg.movie_id = r.movie_id
+JOIN rating r ON mg.movie_id = r.movie_id
 GROUP BY g.genre_id
 ORDER BY avg_rating DESC;
+
+SELECT g.name,
+       COUNT(*)                AS num_ratings,
+       ROUND(AVG(r.rating), 2) AS avg_rating
+FROM genre g
+JOIN movie_genre mg ON mg.genre_id = g.genre_id
+JOIN rating r       ON r.movie_id  = mg.movie_id
+GROUP BY g.genre_id, g.name
+ORDER BY AVG(r.rating) DESC, g.name;

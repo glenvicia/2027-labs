@@ -2,7 +2,7 @@
 
 ### Claim 1: Every `movieId` appearing in `ratings.csv` also appears in `movies.csv`.
 
-Answer: True, as there are no orphan ratings after doing a left join on the table `rating` with `movie`.
+Answer: True. The query is counting the number of ratings that do not match `movie_id` from `movie`, i.e., orphan rating. As there are no orphan ratings after doing a left join on the table `rating` with `movie`, it means the claim is true.
 
 Output:
 
@@ -122,31 +122,28 @@ Output:
 
 Output:
 
-| title                                   | num_ratings | avg_rating |
-| --------------------------------------- | ----------- | ---------- |
-| Shawshank Redemption, The (1994)        | 317         | 4.43       |
-| Godfather, The (1972)                   | 192         | 4.29       |
-| Fight Club (1999)                       | 218         | 4.27       |
-| Godfather: Part II, The (1974)          | 129         | 4.26       |
-| Departed, The (2006)                    | 107         | 4.25       |
-| Goodfellas (1990)                       | 126         | 4.25       |
-| Casablanca (1942)                       | 100         | 4.24       |
-| Dark Knight, The (2008)                 | 149         | 4.24       |
-| Usual Suspects, The (1995)              | 204         | 4.24       |
-| Princess Bride, The (1987)              | 142         | 4.23       |
-| Star Wars: Episode IV - A New Hope      |             |            |
-| (1977)                                  | 251         | 4.23       |
-| Schindler's List (1993)                 | 220         | 4.23       |
-| Apocalypse Now (1979)                   | 107         | 4.22       |
-| American History X (1998)               | 129         | 4.22       |
-| Star Wars: Episode V - The Empire       |             |            |
-| Strikes Back (1980)                     | 211         | 4.22       |
-| Raiders of the Lost Ark (Indiana Jones  |             |            |
-| and the Raiders of the Lost Ark) (1981) | 200         | 4.21       |
-| One Flew Over the Cuckoo's Nest (1975)  | 133         | 4.2        |
-| Reservoir Dogs (1992)                   | 131         | 4.2        |
-| Pulp Fiction (1994)                     | 307         | 4.2        |
-| Matrix, The (1999)                      | 278         | 4.19       |
+| title                                                                         | num_ratings | avg_rating |
+| ----------------------------------------------------------------------------- | ----------- | ---------- |
+| Shawshank Redemption, The (1994)                                              | 317         | 4.43       |
+| Godfather, The (1972)                                                         | 192         | 4.29       |
+| Fight Club (1999)                                                             | 218         | 4.27       |
+| Godfather: Part II, The (1974)                                                | 129         | 4.26       |
+| Departed, The (2006)                                                          | 107         | 4.25       |
+| Goodfellas (1990)                                                             | 126         | 4.25       |
+| Casablanca (1942)                                                             | 100         | 4.24       |
+| Dark Knight, The (2008)                                                       | 149         | 4.24       |
+| Usual Suspects, The (1995)                                                    | 204         | 4.24       |
+| Princess Bride, The (1987)                                                    | 142         | 4.23       |
+| Star Wars: Episode IV - A New Hope (1977)                                     | 251         | 4.23       |
+| Schindler's List (1993)                                                       | 220         | 4.23       |
+| Apocalypse Now (1979)                                                         | 107         | 4.22       |
+| American History X (1998)                                                     | 129         | 4.22       |
+| Star Wars: Episode V - The Empire Strikes Back (1980)                         | 211         | 4.22       |
+| Raiders of the Lost Ark (Indiana Jonesand the Raiders of the Lost Ark) (1981) | 200         | 4.21       |
+| One Flew Over the Cuckoo's Nest (1975)                                        | 133         | 4.2        |
+| Reservoir Dogs (1992)                                                         | 131         | 4.2        |
+| Pulp Fiction (1994)                                                           | 307         | 4.2        |
+| Matrix, The (1999)                                                            | 278         | 4.19       |
 
 ### Query 3: The most frequent genres, with the number of films in each, ordered by frequency decreasing.
 
@@ -180,24 +177,24 @@ Output:
 
 | name        | num_ratings | avg_rating |
 | ----------- | ----------- | ---------- |
-| Film-Noir   | 872         | 3.92       |
-| War         | 4860        | 3.81       |
-| Documentary | 1221        | 3.8        |
-| Drama       | 41940       | 3.66       |
-| Crime       | 16684       | 3.66       |
-| Animation   | 6989        | 3.63       |
+| Film-Noir   | 870         | 3.92       |
+| War         | 4859        | 3.81       |
+| Documentary | 1219        | 3.8        |
+| Drama       | 41928       | 3.66       |
+| Crime       | 16681       | 3.66       |
+| Animation   | 6988        | 3.63       |
 | Mystery     | 7674        | 3.63       |
 | IMAX        | 4145        | 3.62       |
 | Western     | 1930        | 3.58       |
-| Musical     | 4139        | 3.56       |
-| Adventure   | 24162       | 3.51       |
-| Romance     | 18129       | 3.51       |
-| Thriller    | 26457       | 3.49       |
-| Fantasy     | 11835       | 3.49       |
+| Musical     | 4138        | 3.56       |
+| Adventure   | 24161       | 3.51       |
+| Romance     | 18124       | 3.51       |
+| Thriller    | 26452       | 3.49       |
+| Fantasy     | 11834       | 3.49       |
 | Sci-Fi      | 17243       | 3.46       |
 | Action      | 30635       | 3.45       |
 | Children    | 9208        | 3.41       |
-| Comedy      | 39056       | 3.38       |
-| Horror      | 7292        | 3.26       |
+| Comedy      | 39053       | 3.38       |
+| Horror      | 7291        | 3.26       |
 
 ## Part 4 — Defend the design (15%)

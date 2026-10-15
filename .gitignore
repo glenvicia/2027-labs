@@ -14,5 +14,11 @@ data/*
 # Per-machine port override (see labs/session-02/README.md).
 /.env
 
+# MovieLens files are downloaded locally for hw1 and must not be committed.
+/hw1/movies.csv
+/hw1/ratings.csv
+/hw1/data/
+/hw1/movielens.zip
+
 # Lab solutions live in the private solutions repository, not here.
 labs/*/SOLUTIONS.md
