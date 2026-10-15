@@ -9,9 +9,10 @@ LEFT JOIN movie m ON m.movie_id = r.movie_id
 WHERE m.movie_id IS NULL;
 
 -- Claim 2: No two films share exactly the same title.
-SELECT COUNT(DISTINCT title) AS n_distinct_titles,
-       COUNT(*)              AS n_movie_id
-FROM movie;
+SELECT title, COUNT(*) 
+FROM movie 
+GROUP BY title 
+HAVING COUNT(*) > 1;
 
 -- Claim 3: Every film has received at least one rating.
 SELECT m.movie_id, m.title
@@ -26,9 +27,10 @@ LEFT JOIN movie_genre mg ON mg.movie_id = m.movie_id
 WHERE mg.movie_id IS NULL;
 
 -- Claim 5: Every rating value is a whole number between 1 and 5.
-SELECT COUNT(*) as num_non_whole_1_5 --testing for whole numbers and out of range
-FROM rating r
-WHERE r.rating%1 <> 0 OR r.rating<1 OR r.rating >5;
+SELECT rating, COUNT(*) 
+FROM rating 
+GROUP BY rating 
+ORDER BY rating;
 
 --------------------
 ------ Part 3 ------
@@ -66,13 +68,4 @@ FROM movie_genre mg
 JOIN genre g ON mg.genre_id = g.genre_id
 JOIN rating r ON mg.movie_id = r.movie_id
 GROUP BY g.genre_id
-ORDER BY avg_rating DESC;
-
-SELECT g.name,
-       COUNT(*)                AS num_ratings,
-       ROUND(AVG(r.rating), 2) AS avg_rating
-FROM genre g
-JOIN movie_genre mg ON mg.genre_id = g.genre_id
-JOIN rating r       ON r.movie_id  = mg.movie_id
-GROUP BY g.genre_id, g.name
-ORDER BY AVG(r.rating) DESC, g.name;
+ORDER BY avg_rating DESC, g.name;

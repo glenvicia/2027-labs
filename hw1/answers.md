@@ -1,3 +1,5 @@
+Note: All outputs are listed here. To run the queries, refer to queries.sql.
+
 ## Part 2 — Five claims about the data (25%)
 
 ### Claim 1: Every `movieId` appearing in `ratings.csv` also appears in `movies.csv`.
@@ -12,13 +14,17 @@ Output:
 
 ### Claim 2: No two films share exactly the same title.
 
-Answer: False. There are 9,742 movies (counted by n_movie_id), but only 9,737 unique titles (counted by n_distinct_title), which means some films have the same title.
+Answer: False. There are 5 movie titles that have at least 2 distinct movie_id.
 
 Output:
 
-| n_distinct_title | n_movie_id |
-| ---------------- | ---------- |
-| 9737             | 9742       |
+| title                                  | count |
+| -------------------------------------- | ----- |
+| Eros (2004)                            | 2     |
+| Saturn 3 (1980)                        | 2     |
+| Confessions of a Dangerous Mind (2002) | 2     |
+| Emma (1996)                            | 2     |
+| War of the Worlds (2005)               | 2     |
 
 ### Claim 3: Every film has received at least one rating.
 
@@ -92,13 +98,22 @@ Output:
 
 ### Claim 5: Every rating value is a whole number between 1 and 5.
 
-Answer: False. There are 30,398 ratings that do not fulfill the criteria of being a whole number between 1 and 5.
+Answer: False. A distribution of the ratins show that there are plenty of ratings with a half star, including 1,370 ratings below 1.
 
 Output:
 
-| num_non_whole_1_5 |
-| ----------------- |
-| 30398             |
+| rating | count |
+| ------ | ----- |
+| 0.5    | 1370  |
+| 1      | 2811  |
+| 1.5    | 1791  |
+| 2      | 7551  |
+| 2.5    | 5550  |
+| 3      | 20047 |
+| 3.5    | 13136 |
+| 4      | 26818 |
+| 4.5    | 8551  |
+| 5      | 13211 |
 
 ## Part 3 — Four queries (25%)
 
@@ -122,28 +137,28 @@ Output:
 
 Output:
 
-| title                                                                         | num_ratings | avg_rating |
-| ----------------------------------------------------------------------------- | ----------- | ---------- |
-| Shawshank Redemption, The (1994)                                              | 317         | 4.43       |
-| Godfather, The (1972)                                                         | 192         | 4.29       |
-| Fight Club (1999)                                                             | 218         | 4.27       |
-| Godfather: Part II, The (1974)                                                | 129         | 4.26       |
-| Departed, The (2006)                                                          | 107         | 4.25       |
-| Goodfellas (1990)                                                             | 126         | 4.25       |
-| Casablanca (1942)                                                             | 100         | 4.24       |
-| Dark Knight, The (2008)                                                       | 149         | 4.24       |
-| Usual Suspects, The (1995)                                                    | 204         | 4.24       |
-| Princess Bride, The (1987)                                                    | 142         | 4.23       |
-| Star Wars: Episode IV - A New Hope (1977)                                     | 251         | 4.23       |
-| Schindler's List (1993)                                                       | 220         | 4.23       |
-| Apocalypse Now (1979)                                                         | 107         | 4.22       |
-| American History X (1998)                                                     | 129         | 4.22       |
-| Star Wars: Episode V - The Empire Strikes Back (1980)                         | 211         | 4.22       |
-| Raiders of the Lost Ark (Indiana Jonesand the Raiders of the Lost Ark) (1981) | 200         | 4.21       |
-| One Flew Over the Cuckoo's Nest (1975)                                        | 133         | 4.2        |
-| Reservoir Dogs (1992)                                                         | 131         | 4.2        |
-| Pulp Fiction (1994)                                                           | 307         | 4.2        |
-| Matrix, The (1999)                                                            | 278         | 4.19       |
+| title                                                                           | num_ratings | avg_rating |
+| ------------------------------------------------------------------------------- | ----------- | ---------- |
+| Shawshank Redemption, The (1994)                                                | 317         | 4.43       |
+| Godfather, The (1972)                                                           | 192         | 4.29       |
+| Fight Club (1999)                                                               | 218         | 4.27       |
+| Godfather: Part II, The (1974)                                                  | 129         | 4.26       |
+| Departed, The (2006)                                                            | 107         | 4.25       |
+| Goodfellas (1990)                                                               | 126         | 4.25       |
+| Casablanca (1942)                                                               | 100         | 4.24       |
+| Dark Knight, The (2008)                                                         | 149         | 4.24       |
+| Usual Suspects, The (1995)                                                      | 204         | 4.24       |
+| Princess Bride, The (1987)                                                      | 142         | 4.23       |
+| Star Wars: Episode IV - A New Hope (1977)                                       | 251         | 4.23       |
+| Schindler's List (1993)                                                         | 220         | 4.23       |
+| Apocalypse Now (1979)                                                           | 107         | 4.22       |
+| American History X (1998)                                                       | 129         | 4.22       |
+| Star Wars: Episode V - The Empire Strikes Back (1980)                           | 211         | 4.22       |
+| Raiders of the Lost Ark (Indiana Jones and the Raiders of the Lost Ark) (1981) | 200         | 4.21       |
+| One Flew Over the Cuckoo's Nest (1975)                                          | 133         | 4.2        |
+| Reservoir Dogs (1992)                                                           | 131         | 4.2        |
+| Pulp Fiction (1994)                                                             | 307         | 4.2        |
+| Matrix, The (1999)                                                              | 278         | 4.19       |
 
 ### Query 3: The most frequent genres, with the number of films in each, ordered by frequency decreasing.
 
@@ -198,3 +213,23 @@ Output:
 | Horror      | 7291        | 3.26       |
 
 ## Part 4 — Defend the design (15%)
+
+**Why these tables**
+
+* `movie`: one row per film, where the primary key is `movie_id`. The title cannot be a key because shows titles repeat (as verified in Claim 2).
+* `genre` and `movie_genre`: the CSV packs genres into one pipe-separated cell (e.g.,`Comedy|Drama|Action`), which breaks first normal form. Genres are a many-to-many relationship, so `genre` acts as a lookup table and while `movie_genre` functions  as a junction table. This allows Queries 3 and 4 to use plain joins.
+* `rating`: one row per (user, film) pair, with `(user_id, movie_id)` as the composite primary key. This also enforces that a user rates a film only once.
+* `app_user`: the data has only a `userId` and no other user attributes.
+
+**Decisions I was unsure about**
+
+* *Whether `genre` needed a separate table since genre names are already unique*. I created a `genre` table anyway so that it would be easier to spot typos and avoid the typo being classified as another genre.
+* *Whether an`app_user` table was needed since `user_id`and `rating`  already formed a unique pair in `rating` table.* I eventually kept the  `app_user` table so the foreign key is enforced and the application can later add user attributes without restructuring. The cost is a nearly empty table today. I named it `app_user`because`user` is a reserved word in PostgreSQL.
+* *Films with `(no genres listed)`.* I treated this as “no genre” rather than a genre called “(no genres listed)”. These films have no `movie_genre` rows, which is why Claim 4 returns 34 films.
+* *`rating` as `NUMERIC(2,1)` with a CHECK, vs. `REAL` or `INTEGER`.* `INTEGER` would lose the half-star values. `REAL` could actually represent these particular values exactly, but it is an approximate type, so correctness would depend on the data happening to be multiples of 0.5. `NUMERIC(2,1)` is exact, documents the intended precision, and works directly with the aggregate functions I use.
+
+**Explanations the code needs**
+
+* Tables are dropped in reverse dependency order, so `schema.sql` can be re-run.
+* `\copy` paths assume the CSVs are in `/tmp`. Adjust or document this.
+* `SELECT DISTINCT` in the `movie_genre` insert guards against duplicate genre labels within a cell.
